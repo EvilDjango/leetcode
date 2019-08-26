@@ -72,7 +72,5 @@ public class Solution009 {
         return bits;
     }
 
-    public static void main(String[] args) {
-        System.out.println(Math.pow(10, 0));
-    }
+
 }
