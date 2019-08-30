@@ -169,15 +169,33 @@ public class Solution208 {
             }
             return cur;
         }
+
+        private String searchLongestPrefix(String word) {
+            TrieNode node = root;
+            StringBuilder prefix = new StringBuilder();
+            for (int i = 0; i < word.length(); i++) {
+                char curLetter = word.charAt(i);
+                if (node.containsKey(curLetter) && (node.getLinks() == 1) && (!node.isEnd())) {
+                    prefix.append(curLetter);
+                    node = node.getChild(curLetter);
+                } else
+                    return prefix.toString();
+
+            }
+            return prefix.toString();
+        }
     }
 
     private static class TrieNode {
         private static final int R = 26;
         private TrieNode[] children = new TrieNode[R];
         private boolean end;
+        // 非空子节点的数量
+        private int size;
 
         public void put(char c) {
             children[c - 'a'] = new TrieNode();
+            size++;
         }
 
         public boolean containsKey(char c) {
@@ -194,6 +212,10 @@ public class Solution208 {
 
         public void setEnd() {
             end = true;
+        }
+
+        public int getLinks() {
+            return size;
         }
     }
 }
