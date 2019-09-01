@@ -33,6 +33,17 @@ import java.util.List;
  */
 public class Solution018 {
     /**
+     * 递归解法，参考了别人的题解
+     *
+     * @param nums
+     * @param target
+     * @return
+     */
+    public List<List<Integer>> fourSum3(int[] nums, int target) {
+        return KSum.kSum(nums, 4, target);
+    }
+
+    /**
      * 参考三数之和解法，复杂度为n3
      * 先确定第一个数，剩下的就是三数之和问题了。基本上可以说是照搬。
      *
