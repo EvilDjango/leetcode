@@ -1,6 +1,7 @@
 package com.deerhunter;
 
 import com.deerhunter.common.ListNode;
+import com.deerhunter.common.Utils;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
@@ -28,6 +29,27 @@ import java.util.PriorityQueue;
  * @date 2019-09-01
  */
 public class Solution023 {
+    /**
+     * 参考官方题解中的python版分治解法
+     *
+     * @param lists
+     * @return
+     */
+    public static ListNode mergeKLists3(ListNode[] lists) {
+        if (lists == null || lists.length == 0) {
+            return null;
+        }
+        int len = lists.length;
+        int step = 1;
+        while (step < len) {
+            for (int i = 0; i + step < len; i += 2 * step) {
+                lists[i] = Utils.merge(lists[i], lists[i + step]);
+            }
+            step *= 2;
+        }
+        return lists[0];
+    }
+
     /**
      * 参考官方题解写的解法
      *

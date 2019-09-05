@@ -33,4 +33,13 @@ class Solution023Test {
         ListNode merged = Utils.createLinkList(new int[]{1, 1, 2, 3, 4, 4, 5, 6});
         assertEquals(merged, Solution023.mergeKLists2(new ListNode[]{l1, l2, l3}));
     }
+
+    @Test
+    void mergeKLists3() {
+        ListNode l1 = Utils.createLinkList(new int[]{1, 4, 5});
+        ListNode l2 = Utils.createLinkList(new int[]{1, 3, 4});
+        ListNode l3 = Utils.createLinkList(new int[]{2, 6});
+        ListNode merged = Utils.createLinkList(new int[]{1, 1, 2, 3, 4, 4, 5, 6});
+        assertEquals(merged, Solution023.mergeKLists3(new ListNode[]{l1, l2, l3}));
+    }
 }

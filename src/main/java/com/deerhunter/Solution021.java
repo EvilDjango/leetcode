@@ -1,6 +1,7 @@
 package com.deerhunter;
 
 import com.deerhunter.common.ListNode;
+import com.deerhunter.common.Utils;
 
 /**
  * O将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 
@@ -21,21 +22,6 @@ import com.deerhunter.common.ListNode;
  */
 public class Solution021 {
     public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        ListNode node1 = l1;
-        ListNode node2 = l2;
-        ListNode dummy = new ListNode(0);
-        ListNode cur = dummy;
-        while (node1 != null && node2 != null) {
-            if (node1.val <= node2.val) {
-                cur.next = node1;
-                node1 = node1.next;
-            } else {
-                cur.next = node2;
-                node2 = node2.next;
-            }
-            cur = cur.next;
-        }
-        cur.next = node1 != null ? node1 : node2;
-        return dummy.next;
+        return Utils.merge(l1, l2);
     }
 }
