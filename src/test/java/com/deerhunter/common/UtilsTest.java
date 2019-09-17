@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class UtilsTest {
     private static final int[] nums = new int[]{1, 2, 2, 2, 3, 4, 5};
+    private static final int[] nums2 = new int[]{5, 4, 3, 2, 2, 2, 1};
 
     @Test
     void createLinkList() {
@@ -22,7 +23,6 @@ class UtilsTest {
     @Test
     void lowerBound() {
         assertEquals(1, Utils.lowerBound(nums, 2));
-
     }
 
     @Test
@@ -36,5 +36,17 @@ class UtilsTest {
         assertEquals(-1, Utils.binarySearch(nums, 0));
         assertEquals(-1, Utils.binarySearch(nums, 10));
         assertEquals(0, Utils.binarySearch(nums, 1));
+    }
+
+    @Test
+    void reversedLowerBound() {
+        assertEquals(5, Utils.reversedLowerBound(nums2, 2));
+    }
+
+    @Test
+    void reversedUpperBound() {
+        assertEquals(2, Utils.reversedUpperBound(nums2, 2, 0, nums.length));
+        assertEquals(0, Utils.reversedUpperBound(new int[]{3}, 2,0, nums.length ));
+
     }
 }

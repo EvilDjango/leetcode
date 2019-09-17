@@ -12,6 +12,12 @@ public class Utils {
     private Utils() {
     }
 
+    /**
+     * 创建一个链表
+     *
+     * @param nums
+     * @return
+     */
     public static ListNode createLinkList(int... nums) {
         if (null == nums || nums.length == 0) {
             return null;
@@ -25,6 +31,13 @@ public class Utils {
         return head;
     }
 
+    /**
+     * 合并两个升序链表
+     *
+     * @param l1
+     * @param l2
+     * @return
+     */
     public static ListNode merge(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(0);
         ListNode cur = dummy;
@@ -42,34 +55,47 @@ public class Utils {
         return dummy.next;
     }
 
+    public static int binarySearch(int[] nums, int target) {
+        return binarySearch(nums, target, 0, nums.length);
+    }
+
     /**
      * 二分查找第一个等于target的元素下标
      *
      * @param nums
      * @param target
+     * @param start
+     * @param end
      * @return
      */
-    public static int binarySearch(int[] nums, int target) {
-        int lowerBound = lowerBound(nums, target);
+    public static int binarySearch(int[] nums, int target, int start, int end) {
+        int lowerBound = lowerBound(nums, target, start, end);
         if (lowerBound < nums.length && nums[lowerBound] == target) {
             return lowerBound;
         }
         return -1;
     }
 
+
+    public static int lowerBound(int[] nums, int target) {
+        return lowerBound(nums, target, 0, nums.length);
+    }
+
     /**
-     * 查找给定的数组中第一个不小于target的元素下标
+     * 查找升序数组中第一个不小于target的元素下标
      *
-     * @param nums
-     * @param target
+     * @param nums   升序数组
+     * @param target 目标值
+     * @param start  查找起始下标，包含
+     * @param end    查找终止下标，不包含
      * @return
      */
-    public static int lowerBound(int[] nums, int target) {
-        if (null == nums) {
-            throw new NullPointerException();
+    public static int lowerBound(int[] nums, int target, int start, int end) {
+        if (nums == null || nums.length == 0 || start > nums.length - 1) {
+            return -1;
         }
-        int left = 0;
-        int right = nums.length;
+        int left = start;
+        int right = end > nums.length ? nums.length : end;
         while (left < right) {
             // 防止溢出
             int mid = left + (right - left) / 2;
@@ -82,19 +108,26 @@ public class Utils {
         return left;
     }
 
+
+    public static int upperBound(int[] nums, int target) {
+        return upperBound(nums, target, 0, nums.length);
+    }
+
     /**
-     * 查找给定的数组中第一个大于target的元素下标
+     * 查找升序数组中第一个大于target的元素下标
      *
-     * @param nums
-     * @param target
+     * @param nums   升序数组
+     * @param target 目标值
+     * @param start  查找起始下标，包含
+     * @param end    查找终止下标，不包含
      * @return
      */
-    public static int upperBound(int[] nums, int target) {
-        if (null == nums) {
-            throw new NullPointerException();
+    public static int upperBound(int[] nums, int target, int start, int end) {
+        if (nums == null || nums.length == 0 || start > nums.length - 1) {
+            return -1;
         }
         int left = 0;
-        int right = nums.length;
+        int right = end > nums.length ? nums.length : end;
         while (left < right) {
             // 防止溢出
             int mid = left + (right - left) / 2;
@@ -105,5 +138,63 @@ public class Utils {
             }
         }
         return left;
+    }
+
+    /**
+     * 查找降序数组中最后一个不小于target的元素下标
+     *
+     * @param nums   降序数组
+     * @param target
+     * @return
+     */
+    public static int reversedLowerBound(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+        int left = -1;
+        int right = nums.length - 1;
+        while (left < right) {
+            // 防止溢出
+            int mid = left + (right - left + 1) / 2;
+            if (nums[mid] >= target) {
+                left = mid;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return left;
+    }
+
+    /**
+     * 查找降序数组中最后一个大于target的元素下标
+     *
+     * @param nums   降序数组
+     * @param target
+     * @param left
+     * @param right
+     * @return
+     */
+    public static int reversedUpperBound(int[] nums, int target, int left, int right) {
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+        int l = left - 1 < -1 ? -1 : left - 1;
+        int r = right > nums.length ? nums.length - 1 : right - 1;
+        while (l < r) {
+            // 防止溢出
+            int mid = l + (r - l + 1) / 2;
+            if (nums[mid] > target) {
+                l = mid;
+            } else {
+                r = mid - 1;
+            }
+        }
+        return l;
+    }
+
+    public static void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 }
