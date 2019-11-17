@@ -1,5 +1,7 @@
 package com.deerhunter.common;
 
+import java.util.Arrays;
+
 /**
  * Oops, forgot to write comment. Good luck, bro.
  * <p>
@@ -196,5 +198,22 @@ public class Utils {
         int temp = nums[i];
         nums[i] = nums[j];
         nums[j] = temp;
+    }
+
+    public static void printArray(char[][] arr) {
+        System.out.println(arrToStr(arr));
+    }
+
+    public static String arrToStr(char[][] arr) {
+        StringBuilder sb = new StringBuilder();
+        for (char[] row : arr) {
+            sb.append(Arrays.toString(row));
+            sb.append("\n");
+        }
+        // 删掉最后一个多余的换行符
+        if (sb.length() > 0) {
+            sb.deleteCharAt(sb.length() - 1);
+        }
+        return sb.toString();
     }
 }
