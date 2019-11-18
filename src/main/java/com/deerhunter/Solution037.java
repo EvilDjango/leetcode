@@ -43,6 +43,7 @@ import static com.deerhunter.common.Utils.arrToStr;
  */
 @Slf4j
 public class Solution037 {
+    // 自己写的回溯算法
     public static boolean solveSudoku(char[][] board) {
         return dfsFill(board, 0, 0);
     }
@@ -61,14 +62,10 @@ public class Solution037 {
 
         int[] next = getNext(row, col);
 
-        if (row == 6) {
-            log.info("\n" + arrToStr(board));
-        }
         // 最初已经确定了值的格子无需操作，直接走向下一格
         if ('.' != board[row][col]) {
             return dfsFill(board, next[0], next[1]);
         }
-
 
         boolean[] book = getAvailableDigitBook(board, row, col);
         System.out.print("");
@@ -169,12 +166,128 @@ public class Solution037 {
         return new int[]{nextRow, nextCol};
     }
 
-    public static void main(String[] args) throws IOException {
-        File f = new File("test");
-        FileWriter writer = new FileWriter(f);
-        writer.append("test");
-        writer.close();
-        log.info("INFO test");
+    /**
+     * 参考官方题解写的解法，与自己的解法的区别在于，这里增加了对各行，列，方块已使用数字的缓存，避免了重复计算，提高了效率
+     */
+    static class OfficialSolution {
+        /**
+         * 是否已经得到了一个解
+         */
+        private boolean solved = false;
+        /**
+         * 数独的阶数
+         */
+        private int N = 9;
+        /**
+         * 方块边长
+         */
+        private int BOX_LEN = 3;
+        private char[][] board;
+        /**
+         * 记录各行已经使用的数字
+         */
+        private boolean[][] ROW_BOOK = new boolean[N][N + 1];
+        /**
+         * 记录各列已经使用的数字
+         */
+        private boolean[][] COL_BOOK = new boolean[N][N + 1];
+        /**
+         * 记录各个方块中已经使用的数字
+         */
+        private boolean[][] BOX_BOOK = new boolean[N][N + 1];
+
+        public boolean solveSudoku(char[][] board) {
+            this.board = board;
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    char c = board[i][j];
+                    if (c != '.') {
+                        int d = Character.getNumericValue(c);
+                        placeNumber(d, i, j);
+                    }
+                }
+            }
+            backTrack(0, 0);
+            return solved;
+        }
+
+        private void backTrack(int row, int col) {
+            if (row == -1) {
+                solved = true;
+                return;
+            }
+            int[] next = getNext(row, col);
+            int nextRow = next[0];
+            int nextCol = next[1];
+            if (board[row][col] != '.') {
+                backTrack(nextRow, nextCol);
+            } else {
+                for (int d = 1; d < 10; d++) {
+                    if (couldPlace(d, row, col)) {
+                        placeNumber(d, row, col);
+                        backTrack(nextRow, nextCol);
+                        if (!solved) {
+                            removeNumber(d, row, col);
+                        }
+                    }
+                }
+            }
+        }
+
+
+        /**
+         * 放置一个数字
+         *
+         * @param d
+         * @param row
+         * @param col
+         */
+        private void placeNumber(int d, int row, int col) {
+            board[row][col] = (char) ('0' + d);
+            ROW_BOOK[row][d] = true;
+            COL_BOOK[col][d] = true;
+            BOX_BOOK[getBoxIndex(row, col)][d] = true;
+        }
+
+        /**
+         * 移除一个数字
+         *
+         * @param d
+         * @param row
+         * @param col
+         */
+        private void removeNumber(int d, int row, int col) {
+            board[row][col] = '.';
+            ROW_BOOK[row][d] = false;
+            COL_BOOK[col][d] = false;
+            BOX_BOOK[getBoxIndex(row, col)][d] = false;
+        }
+
+        /**
+         * 判断一个数字d是否可以放在当前位置（row，col）
+         *
+         * @param d
+         * @param row
+         * @param col
+         * @return
+         */
+        private boolean couldPlace(int d, int row, int col) {
+            int boxIndex = getBoxIndex(row, col);
+            // 如果一个数字在当前行，当前列，当前方块内都没有出现过，则可以放置在当前位置
+            return !ROW_BOOK[row][d] && !COL_BOOK[col][d] && !BOX_BOOK[boxIndex][d];
+        }
+
+        /**
+         * 获取方块编号
+         *
+         * @param row
+         * @param col
+         * @return
+         */
+        private int getBoxIndex(int row, int col) {
+            return (row / BOX_LEN) * (N / BOX_LEN) + col / BOX_LEN;
+        }
+
     }
 
 }
