@@ -2,12 +2,6 @@ package com.deerhunter;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import static com.deerhunter.common.Utils.arrToStr;
-
 /**
  * 编写一个程序，通过已填充的空格来解决数独问题。
  * <p>
