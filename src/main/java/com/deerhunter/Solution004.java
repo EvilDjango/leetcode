@@ -8,7 +8,7 @@ package com.deerhunter;
  * @author xuejunc
  * @date 2019-08-08
  */
-public class Solution0004 {
+public class Solution004 {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int m = nums1.length;
         int n = nums2.length;

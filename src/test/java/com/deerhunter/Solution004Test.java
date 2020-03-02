@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author xuejunc
  * @date 2019-08-08
  */
-class Solution0004Test {
-    private Solution0004 solution = new Solution0004();
+class Solution004Test {
+    private Solution004 solution = new Solution004();
 
     @Test
     void findMedianSortedArrays() {

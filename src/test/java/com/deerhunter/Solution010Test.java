@@ -31,6 +31,7 @@ class Solution010Test {
 
     @Test
     void isMatch2() {
+        assertFalse(solution.isMatch2("ab", ".*c"));
         assertTrue(solution.isMatch2("a", "ab*"));
         assertTrue(solution.isMatch2("", ""));
 
@@ -69,5 +70,38 @@ class Solution010Test {
         assertTrue(solution.isMatch4("aab", "c*a*b"));
         assertFalse(solution.isMatch4("aa", "a"));
         assertFalse(solution.isMatch4("mississippi", "mis*is*p*."));
+    }
+
+    @Test
+    void isMatch5() {
+        assertTrue(solution.isMatch5("a", "a*"));
+        assertTrue(solution.isMatch5("a", "ab*"));
+        assertTrue(solution.isMatch5("", ""));
+
+        assertTrue(solution.isMatch5("", ".*"));
+        assertTrue(solution.isMatch5("ab", ".*"));
+        assertTrue(solution.isMatch5("aab", "a.*"));
+        assertTrue(solution.isMatch5("aa", "a*"));
+        assertTrue(solution.isMatch5("aab", "c*a*b"));
+        assertFalse(solution.isMatch5("aa", "a"));
+        assertFalse(solution.isMatch5("mississippi", "mis*is*p*."));
+    }
+
+    @Test
+    void isMatch6() {
+        assertFalse(solution.isMatch6("ab", ".*c"));
+
+        assertFalse(solution.isMatch6("", "a"));
+        assertTrue(solution.isMatch6("a", "a*"));
+        assertTrue(solution.isMatch6("a", "ab*"));
+        assertTrue(solution.isMatch6("", ""));
+
+        assertTrue(solution.isMatch6("", ".*"));
+        assertTrue(solution.isMatch6("ab", ".*"));
+        assertTrue(solution.isMatch6("aab", "a.*"));
+        assertTrue(solution.isMatch6("aa", "a*"));
+        assertTrue(solution.isMatch6("aab", "c*a*b"));
+        assertFalse(solution.isMatch6("aa", "a"));
+        assertFalse(solution.isMatch6("mississippi", "mis*is*p*."));
     }
 }
