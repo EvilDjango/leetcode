@@ -2,6 +2,10 @@ package com.deerhunter;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 /**
  * Oops, forgot to write comment. Good luck, bro.
  * <p>
@@ -11,7 +15,7 @@ import org.junit.jupiter.api.Test;
  * @date 2019-08-14
  */
 class Topic009Test {
-    private Solution009 solution = new Solution009();
+    private Topic009 solution = new Topic009();
 
     @Test
     void isPalindrome() {
@@ -33,18 +37,18 @@ class Topic009Test {
 
     @Test
     void bits() {
-        assertEquals(1, Solution009.getBits(0));
-        assertEquals(1, Solution009.getBits(3));
-        assertEquals(2, Solution009.getBits(99));
-        assertEquals(3, Solution009.getBits(100));
+        assertEquals(1, Topic009.getBits(0));
+        assertEquals(1, Topic009.getBits(3));
+        assertEquals(2, Topic009.getBits(99));
+        assertEquals(3, Topic009.getBits(100));
     }
 
     @Test
     void getNumByBit() {
-        assertEquals(9, Solution009.getNumByBit(9, 0));
-        assertEquals(9, Solution009.getNumByBit(91, 1));
-        assertEquals(0, Solution009.getNumByBit(91, -1));
-        assertEquals(0, Solution009.getNumByBit(91, 5));
-        assertEquals(2, Solution009.getNumByBit(23291, 4));
+        assertEquals(9, Topic009.getNumByBit(9, 0));
+        assertEquals(9, Topic009.getNumByBit(91, 1));
+        assertEquals(0, Topic009.getNumByBit(91, -1));
+        assertEquals(0, Topic009.getNumByBit(91, 5));
+        assertEquals(2, Topic009.getNumByBit(23291, 4));
     }
 }
