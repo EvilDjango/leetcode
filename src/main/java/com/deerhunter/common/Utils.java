@@ -223,4 +223,32 @@ public class Utils {
         return sb.toString();
     }
 
+
+    public static void checkArrayEqual(int[][] expected, int[][] actual) {
+        if (expected.length != actual.length) {
+            throw new RuntimeException(String.format("Length not equal. Expect: %d, Actual: %d", expected.length, actual.length));
+        }
+        for (int i = 0; i < expected.length; i++) {
+            int[] expectedRow = expected[i];
+            int[] row = actual[i];
+            if (expectedRow.length != row.length) {
+                throw new RuntimeException(String.format("Row length not equal. Expect: %d, Actual: %d. Row index: %d", expectedRow.length, row.length, i));
+            }
+            for (int j = 0; j < expectedRow.length; j++) {
+                if (expectedRow[j] != row[j]) {
+                    throw new RuntimeException(String.format("Expected: %d, Actual: %d, Row: %d, Column: %d", expectedRow[j], row[j], i, j));
+                }
+            }
+        }
+    }
+
+    public static boolean isArrayEqual(int[][] expected, int[][] actual) {
+        try {
+            checkArrayEqual(expected, actual);
+            return true;
+        } catch (RuntimeException e) {
+            return false;
+        }
+    }
+
 }
