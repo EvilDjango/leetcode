@@ -49,4 +49,12 @@ class UtilsTest {
         assertEquals(0, Utils.reversedUpperBound(new int[]{3}, 2,0, nums.length ));
 
     }
+
+    @Test
+    void factorial() {
+        assertEquals(1,Utils.factorial(0));
+        assertEquals(1,Utils.factorial(1));
+        assertEquals(2,Utils.factorial(2));
+        assertEquals(6,Utils.factorial(3));
+    }
 }
