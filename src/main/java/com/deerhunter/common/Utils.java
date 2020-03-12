@@ -1,6 +1,8 @@
 package com.deerhunter.common;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Oops, forgot to write comment. Good luck, bro.
@@ -257,5 +259,52 @@ public class Utils {
             ret *= i;
         }
         return ret;
+    }
+
+    /**
+     * 将十进制数转换为二进制表示
+     * <p>
+     * 从低到高转换
+     *
+     * @param n
+     * @return
+     */
+    public static String getBinary(int n) {
+        if (n == 0) {
+            return "0";
+        }
+        StringBuilder sb = new StringBuilder();
+        while (n > 0) {
+            int bit = n % 2;
+            sb.append(bit);
+            n /= 2;
+        }
+        return sb.reverse().toString();
+    }
+
+    /**
+     * 将十进制数转换为二进制表示
+     * <p>
+     * 从高到低转换
+     *
+     * @param n
+     * @return
+     */
+    public static String getBinary2(int n) {
+        if (n == 0) {
+            return "0";
+        }
+        List<Integer> powers = new ArrayList<>();
+        powers.add(1);
+        while (powers.get(powers.size() - 1) <= n) {
+            powers.add(powers.get(powers.size() - 1) * 2);
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = powers.size() - 2; i >= 0; i--) {
+            int bit = n / powers.get(i);
+            sb.append(bit);
+            n -= bit * powers.get(i);
+        }
+        return sb.toString();
     }
 }

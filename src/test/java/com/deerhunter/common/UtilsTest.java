@@ -57,4 +57,24 @@ class UtilsTest {
         assertEquals(2,Utils.factorial(2));
         assertEquals(6,Utils.factorial(3));
     }
+
+    @Test
+    void getBinary() {
+        assertEquals("0",Utils.getBinary(0));
+        assertEquals("1",Utils.getBinary(1));
+        assertEquals("11",Utils.getBinary(3));
+        assertEquals("100",Utils.getBinary(4));
+        assertEquals("101",Utils.getBinary(5));
+        assertEquals("1010",Utils.getBinary(10));
+    }
+
+    @Test
+    void getBinary2() {
+        assertEquals("0",Utils.getBinary2(0));
+        assertEquals("1",Utils.getBinary2(1));
+        assertEquals("11",Utils.getBinary2(3));
+        assertEquals("100",Utils.getBinary(4));
+        assertEquals("101",Utils.getBinary2(5));
+        assertEquals("1010",Utils.getBinary2(10));
+    }
 }
