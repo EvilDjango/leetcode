@@ -16,8 +16,8 @@ public class ListNode {
         ListNode node = (ListNode) obj;
         ListNode cur1 = this;
         ListNode cur2 = node;
-        while (cur1 != null) {
-            if (cur2 == null || cur1.val != cur2.val) {
+        while (cur1 != null || cur2 != null) {
+            if (cur1 == null || cur2 == null || cur1.val != cur2.val) {
                 return false;
             }
             cur1 = cur1.next;

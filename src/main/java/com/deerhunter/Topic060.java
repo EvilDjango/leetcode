@@ -1,11 +1,7 @@
 package com.deerhunter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.IntStream;
-
-import static com.deerhunter.common.Utils.factorial;
 
 /**
  * 给出集合 [1,2,3,…,n]，其所有元素共有 n! 种排列。
@@ -43,6 +39,9 @@ import static com.deerhunter.common.Utils.factorial;
  * @date 2020-03-12
  */
 public class Topic060 {
+    /**
+     * 暴力解法
+     */
     public static class Solution1 {
         public String getPermutation(int n, int k) {
             return searchPermutations(n, k, new boolean[n], new int[n], 0, new int[1]);
