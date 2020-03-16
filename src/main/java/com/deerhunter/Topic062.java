@@ -1,5 +1,9 @@
 package com.deerhunter;
 
+import com.deerhunter.common.Utils;
+
+import java.math.BigInteger;
+
 /**
  * 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
  * <p>
@@ -44,7 +48,10 @@ package com.deerhunter;
  * @date 2020-03-15
  */
 public class Topic062 {
-    public static class Solution {
+    /**
+     * 深度遍历，找到所有路径。会超时
+     */
+    public static class Solution1 {
         public int uniquePaths(int m, int n) {
             int[] pathCount = new int[1];
             findPaths(m, n, 0, 0, pathCount);
@@ -73,4 +80,77 @@ public class Topic062 {
             }
         }
     }
+
+    /**
+     * 动态规划
+     */
+    public static class Solution2 {
+        public int uniquePaths(int m, int n) {
+            // 到达每个位置的可能路径数量
+            int[][] dp = new int[m][n];
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (i + j == 0) {
+                        dp[i][j] = 1;
+                        continue;
+                    }
+                    int leftPaths = i > 0 ? dp[i - 1][j] : 0;
+                    int rightPaths = j > 0 ? dp[i][j - 1] : 0;
+                    dp[i][j] = leftPaths + rightPaths;
+                }
+            }
+            return dp[m - 1][n - 1];
+
+        }
+    }
+
+    /**
+     * 排列组合。想法是很不错的，但是为了避免溢出，必须使用BigInteger。
+     * <p>
+     * 因为机器到底右下角，向下几步，向右几步都是固定的，
+     * <p>
+     * 比如，m=3, n=2，我们只要向下 1 步，向右 2 步就一定能到达终点。
+     * <p>
+     * 所以有 C_{m+n-2}^{m-1}C
+     * m+n−2
+     * m−1
+     * ​
+     * <p>
+     * <p>
+     * Python
+     * <p>
+     * <p>
+     * 作者：powcai
+     * 链接：https://leetcode-cn.com/problems/unique-paths/solution/dong-tai-gui-hua-by-powcai-2/
+     * 来源：力扣（LeetCode）
+     * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+     */
+    public static class Solution3 {
+        public int uniquePaths(int m, int n) {
+            BigInteger paths = new BigInteger("1", 10);
+            for (int i = m + n - 2; i >= n; i--) {
+                paths = paths.multiply(new BigInteger("" + i, 10));
+            }
+            for (int i = 1; i < m; i++) {
+                paths = paths.divide(new BigInteger("" + i, 10));
+            }
+            return Integer.parseInt(paths.toString(10));
+        }
+
+        int factorial(int n) {
+            if (n < 0) {
+                throw new IllegalArgumentException("Negative factorials don't make sense");
+            }
+            if (n == 0) {
+                return 1;
+            }
+            int product = n;
+            int factor = n - 1;
+            while (factor > 1) {
+                product *= factor--;
+            }
+            return product;
+        }
+    }
+
 }
