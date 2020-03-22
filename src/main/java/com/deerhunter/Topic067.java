@@ -1,5 +1,7 @@
 package com.deerhunter;
 
+import java.math.BigInteger;
+
 /**
  * 给定两个二进制字符串，返回他们的和（用二进制表示）。
  * <p>
@@ -51,4 +53,94 @@ public class Topic067 {
         }
 
     }
+
+    /**
+     * 参考官方题解：经典算法
+     */
+    public static class Solution2 {
+        public String addBinary(String a, String b) {
+            int len = Math.max(a.length(), b.length());
+            StringBuilder sb = new StringBuilder();
+            // 进位
+            int carry = 0;
+            for (int i = 0; i < len; i++) {
+                int indexA = a.length() - i - 1;
+                int indexB = b.length() - i - 1;
+                if (indexA > -1 && a.charAt(indexA) == '1') {
+                    carry++;
+                }
+                if (indexB > -1 && b.charAt(indexB) == '1') {
+                    carry++;
+                }
+                sb.append(carry % 2);
+                carry /= 2;
+            }
+            if (carry > 0) {
+                sb.append(carry);
+            }
+            return sb.reverse().toString();
+        }
+
+    }
+
+    /**
+     * 位运算解法,由于测试用例的位数会超出64位，所以未ac
+     */
+    public static class Solution3 {
+        public String addBinary(String a, String b) {
+            long m = parseBinary(a);
+            long n = parseBinary(b);
+            long result = addBinary(m, n);
+            return toBinary(result);
+        }
+
+        private long addBinary(long m, long n) {
+            long answerWithoutCarry = m ^ n;
+            long carry = (m & n) << 1;
+            return carry == 0 ? answerWithoutCarry : addBinary(answerWithoutCarry, carry);
+        }
+
+        public long parseBinary(String s) {
+            long ret = 0;
+            long base = 1;
+            for (int i = 0; i < s.length(); i++) {
+                int index = s.length() - i - 1;
+                ret += (s.charAt(index) - '0') * base;
+                base *= 2;
+            }
+            return ret;
+        }
+
+        public String toBinary(long i) {
+            if (i == 0) {
+                return "0";
+            }
+            StringBuilder sb = new StringBuilder();
+            while (i > 0) {
+                sb.append(i % 2);
+                i /= 2;
+            }
+            return sb.reverse().toString();
+        }
+
+    }
+
+    /**
+     * 位运算解法，复刻官方解法
+     */
+    public static class Solution4 {
+        public String addBinary(String a, String b) {
+            BigInteger m = new BigInteger(a, 2);
+            BigInteger n = new BigInteger(b, 2);
+            BigInteger zero = new BigInteger("0", 2);
+            while (n.compareTo(zero) != 0) {
+                BigInteger answer = m.xor(n);
+                BigInteger carry = m.and(n).shiftLeft(1);
+                m = answer;
+                n = carry;
+            }
+            return m.toString(2);
+        }
+    }
+
 }
