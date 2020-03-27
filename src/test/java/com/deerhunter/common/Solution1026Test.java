@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author xuejunc
  * @date 2019-09-04
  */
-class Solution026Test {
+class Solution1026Test {
 
     @Test
     void removeDuplicates() {

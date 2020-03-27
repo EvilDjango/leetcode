@@ -212,6 +212,7 @@ public class Utils {
         System.out.println(arrToStr(arr));
     }
 
+
     public static String arrToStr(char[][] arr) {
         StringBuilder sb = new StringBuilder();
         for (char[] row : arr) {
@@ -223,6 +224,20 @@ public class Utils {
             sb.deleteCharAt(sb.length() - 1);
         }
         return sb.toString();
+    }
+
+
+    public static void printArray(int[][] arr, int bit) {
+        String format = "%" + bit + "d";
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
+                System.out.printf(format, arr[i][j]);
+                if (j != arr[i].length - 1) {
+                    System.out.print(", ");
+                }
+            }
+            System.out.println();
+        }
     }
 
 
@@ -307,4 +322,6 @@ public class Utils {
         }
         return sb.toString();
     }
+
+
 }
