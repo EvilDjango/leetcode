@@ -4,18 +4,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 实现一个 Trie2 (前缀树)，包含 insert, search2, 和 startsWith 这三个操作。
+ * 实现一个 Trie2 (前缀树)，包含 insert, search, 和 startsWith 这三个操作。
  * <p>
  * 示例:
  * <p>
  * Trie2 trie = new Trie2();
  * <p>
  * trie.insert("apple");
- * trie.search2("apple");   // 返回 true
- * trie.search2("app");     // 返回 false
+ * trie.search("apple");   // 返回 true
+ * trie.search("app");     // 返回 false
  * trie.startsWith("app"); // 返回 true
  * trie.insert("app");
- * trie.search2("app");     // 返回 true
+ * trie.search("app");     // 返回 true
  * 说明:
  * <p>
  * 你可以假设所有的输入都是由小写字母 a-z 构成的。
@@ -223,6 +223,6 @@ public class Topic208 {
  * Your Trie2 object will be instantiated and called as such:
  * Trie2 obj = new Trie2();
  * obj.insert(word);
- * boolean param_2 = obj.search2(word);
+ * boolean param_2 = obj.search(word);
  * boolean param_3 = obj.startsWith(prefix);
  */
