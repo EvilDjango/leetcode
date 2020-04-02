@@ -21,18 +21,43 @@ public class Topic011 {
 
     public int maxArea2(int[] height) {
         int left = 0;
-        int right = height.length-1;
+        int right = height.length - 1;
         int maxArea = 0;
         while (left < right) {
             maxArea = Math.max(Math.min(height[left], height[right]) * (right - left), maxArea);
-            int l=left;
+            int l = left;
             if (height[left] <= height[right]) {
                 left++;
             }
-            if (height[l] >= height[right]){
+            if (height[l] >= height[right]) {
                 right--;
             }
         }
         return maxArea;
+    }
+
+    public static class Solution2 {
+        public int maxArea(int[] height) {
+            int left = 0;
+            int right = height.length - 1;
+            int maxArea = 0;
+            while (left < right) {
+                int area = (right - left) * Math.min(height[left], height[right]);
+                maxArea = Math.max(area, maxArea);
+                if (height[left] < height[right]) {
+                    int lastLeft = left;
+                    while (left < right && height[left] <= height[lastLeft]) {
+                        left++;
+                    }
+                } else {
+                    int lastRight = right;
+                    while (left < right && height[right] <= height[lastRight]) {
+                        right--;
+                    }
+                }
+            }
+            return maxArea;
+        }
+
     }
 }
