@@ -89,11 +89,9 @@ public class Topic084 {
             stack.push(-1);
             int maxArea = 0;
             for (int i = 0; i < heights.length; i++) {
-                if (i > 0 && heights[i] < heights[i - 1]) {
-                    while (stack.size() > 1 && heights[stack.peek()] >= heights[i]) {
-                        int area = heights[stack.pop()] * (i - stack.peek() - 1);
-                        maxArea = Math.max(maxArea, area);
-                    }
+                while (stack.size() > 1 && heights[stack.peek()] > heights[i]) {
+                    int area = heights[stack.pop()] * (i - stack.peek() - 1);
+                    maxArea = Math.max(maxArea, area);
                 }
                 stack.push(i);
             }
@@ -106,4 +104,6 @@ public class Topic084 {
             return maxArea;
         }
     }
+
+
 }

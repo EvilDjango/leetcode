@@ -45,6 +45,10 @@ public class IntStack {
         return top < 0;
     }
 
+    public int size() {
+        return top + 1;
+    }
+
     public int getCapacity() {
         return capacity;
     }
