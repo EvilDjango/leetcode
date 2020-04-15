@@ -27,21 +27,32 @@ public class Topic093 {
     public static class Solution1 {
         private List<String> results;
         private StringBuilder sb;
+        private char[] chars;
 
         public List<String> restoreIpAddresses(String s) {
-            this.results = new ArrayList<>();
+            results = new ArrayList<>();
             sb = new StringBuilder();
-            dfs(s.toCharArray(), 0, 0);
+            chars = s.toCharArray();
+            dfs(0, 0);
             return this.results;
         }
 
-        private void dfs(char[] chars, int count, int i) {
+        /**
+         * 回溯查找可能的ip数字
+         *
+         * @param count 当前已经确定的数字
+         * @param i     下一个待处理的字符下标
+         */
+        private void dfs(int count, int i) {
+            // 找到了4个数字，并且字符刚好用完，标志着我们找到了一个解
             if (count == 4 && i == chars.length) {
                 results.add(sb.toString());
                 return;
             }
+
             int remainCount = 4 - count;
             int remainsChars = chars.length - i;
+            // 判断剩余的字符是否有解
             if (remainCount > remainsChars || remainCount * 3 < remainsChars) {
                 return;
             }
@@ -57,10 +68,12 @@ public class Topic093 {
                 for (int k = 0; k <= j; k++) {
                     sb.append(chars[i + k]);
                 }
+                // 第四个数字后面不需要加点
                 if (count < 3) {
                     sb.append('.');
                 }
-                dfs(chars, count + 1, i + j + 1);
+                dfs(count + 1, i + j + 1);
+                // 因为第四个数字后面不需要加点，回溯时少删除一位
                 sb.delete(len, count < 3 ? len + j + 2 : len + j + 1);
             }
         }
