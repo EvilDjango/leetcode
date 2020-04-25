@@ -3,7 +3,6 @@ package com.deerhunter.tree;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
-import java.util.function.Supplier;
 
 /**
  * 四种方式遍历树
@@ -29,8 +28,8 @@ public class Traverse {
             TreeNode node = queue.remove();
             if (node != null) {
                 node.visit();
-                queue.add(node.getLeftChild());
-                queue.add(node.getRightChild());
+                queue.add(node.getLeft());
+                queue.add(node.getRight());
             }
         }
     }
@@ -45,8 +44,8 @@ public class Traverse {
             return;
         }
         root.visit();
-        preOrderRecursively(root.getLeftChild());
-        preOrderRecursively(root.getRightChild());
+        preOrderRecursively(root.getLeft());
+        preOrderRecursively(root.getRight());
     }
 
     /**
@@ -64,9 +63,9 @@ public class Traverse {
             if (cur != null) {
                 cur.visit();
                 stack.add(cur);
-                cur = cur.getLeftChild();
+                cur = cur.getLeft();
             } else {
-                cur = stack.pop().getRightChild();
+                cur = stack.pop().getRight();
             }
         }
     }
@@ -80,9 +79,9 @@ public class Traverse {
         if (null == root) {
             return;
         }
-        inOrderRecursively(root.getLeftChild());
+        inOrderRecursively(root.getLeft());
         root.visit();
-        inOrderRecursively(root.getRightChild());
+        inOrderRecursively(root.getRight());
     }
 
     /**
@@ -99,11 +98,11 @@ public class Traverse {
         while (cur != null || !stack.isEmpty()) {
             if (cur != null) {
                 stack.add(cur);
-                cur = cur.getLeftChild();
+                cur = cur.getLeft();
             } else {
                 TreeNode node = stack.pop();
                 node.visit();
-                cur = node.getRightChild();
+                cur = node.getRight();
             }
         }
     }
@@ -117,8 +116,8 @@ public class Traverse {
         if (null == root) {
             return;
         }
-        postOrderRecursively(root.getLeftChild());
-        postOrderRecursively(root.getRightChild());
+        postOrderRecursively(root.getLeft());
+        postOrderRecursively(root.getRight());
         root.visit();
     }
 
@@ -132,16 +131,16 @@ public class Traverse {
         while (cur != null || !stack.isEmpty()) {
             if (cur != null) {
                 stack.add(cur);
-                cur = cur.getLeftChild();
+                cur = cur.getLeft();
             } else {
                 TreeNode node = stack.peek();
-                if (!node.hasRightChild() || node.getRightChild() == lastVisit) {
+                if (!node.hasRightChild() || node.getRight() == lastVisit) {
                     node.visit();
                     lastVisit = node;
                     stack.pop();
                     cur = null;
                 } else {
-                    cur = node.getRightChild();
+                    cur = node.getRight();
                 }
             }
         }

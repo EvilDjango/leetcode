@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
  * @date 2019-09-20
  */
 class TraverseTest {
-    private TreeNode root = TreeNode.createTree(new int[]{1, 2, 3, 4, 5, 6, 7});
+    private TreeNode root = TreeNode.createCompleteTree(new int[]{1, 2, 3, 4, 5, 6, 7});
 
 
     @Test
