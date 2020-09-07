@@ -1,5 +1,7 @@
 package com.deerhunter.common;
 
+import com.deerhunter.tree.TreeNode;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -237,6 +239,32 @@ public class Utils {
                 }
             }
             System.out.println();
+        }
+    }
+
+    /**
+     * 深度复制一个树结构
+     *
+     * @param head
+     * @return
+     */
+    public static TreeNode copyTree(TreeNode head) {
+        if (head == null) {
+            return null;
+        }
+        TreeNode newHead = new TreeNode(head.val);
+        dfsCopyTree(head, newHead);
+        return newHead;
+    }
+
+    private static void dfsCopyTree(TreeNode head, TreeNode newHead) {
+        if (head.left != null) {
+            newHead.left = new TreeNode(head.left.val);
+            dfsCopyTree(head.left, newHead.left);
+        }
+        if (head.right != null) {
+            newHead.right = new TreeNode(head.right.val);
+            dfsCopyTree(head.right, newHead.right);
         }
     }
 

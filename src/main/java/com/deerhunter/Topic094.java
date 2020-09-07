@@ -1,6 +1,5 @@
 package com.deerhunter;
 
-import com.deerhunter.common.ListNode;
 import com.deerhunter.tree.TreeNode;
 
 import java.util.ArrayList;
