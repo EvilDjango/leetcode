@@ -177,6 +177,11 @@ public class TreeNode {
         return nodes[0];
     }
 
+    /**
+     * 转换为按层遍历得到的节点数组
+     *
+     * @return
+     */
     public TreeNode[] toArray() {
         List<TreeNode> nodes = new ArrayList<>();
         nodes.add(this);
@@ -215,6 +220,11 @@ public class TreeNode {
         return nodes.toArray(new TreeNode[0]);
     }
 
+    /**
+     * 转换为按层遍历得到的数组
+     *
+     * @return
+     */
     public Integer[] toIntegers() {
         TreeNode[] treeNodes = toArray();
         Integer[] integers = new Integer[treeNodes.length];
