@@ -15,13 +15,34 @@ class TraverseTest {
 
 
     @Test
-    void preorderRecursiveUseAncestor() {
+    void preOrderRecursively() {
         Traverse.preOrderRecursively(root);
     }
 
     @Test
     void preorderByLoop() {
         Traverse.preOrderByLoop(root);
+    }
+
+    @Test
+    void preorderByLoop2() {
+        Traverse.preOrderByLoop2(root);
+    }
+
+    @Test
+    void preorderByLoop3() {
+        Traverse.preOrderByLoop3(root);
+    }
+
+    @Test
+    void preOrderByMorris() {
+        Traverse.preOrderByMorris(root);
+        System.out.println();
+    }
+
+    @Test
+    void preorderByLoop4() {
+        Traverse.preOrderByLoop4(root);
     }
 
     @Test
@@ -40,6 +61,16 @@ class TraverseTest {
     }
 
     @Test
+    void inorderByLoop2() {
+        Traverse.inOrderByLoop2(root);
+    }
+
+    @Test
+    void inOrderByMorris() {
+        Traverse.inOrderByMorris(root);
+    }
+
+    @Test
     void postOrderRecursively() {
         Traverse.postOrderRecursively(root);
     }
@@ -47,5 +78,15 @@ class TraverseTest {
     @Test
     void postOrderByLoop() {
         Traverse.postOrderByLoop(root);
+    }
+
+    @Test
+    void postOrderByLoo2() {
+        Traverse.postOrderByLoop2(root);
+    }
+
+    @Test
+    void postOrderMorris() {
+        Traverse.postOrderMorris(root);
     }
 }
