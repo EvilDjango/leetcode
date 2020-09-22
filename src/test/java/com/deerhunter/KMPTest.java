@@ -20,4 +20,11 @@ class KMPTest {
         assertEquals(-1, KMP.kmp("ab", "cab"));
         assertEquals(1, KMP.kmp("cab", "ab"));
     }
+
+    @Test
+    void kmp2() {
+        assertEquals(0, KMP.kmp2("ab", "ab"));
+        assertEquals(-1, KMP.kmp2("ab", "cab"));
+        assertEquals(1, KMP.kmp2("cab", "ab"));
+    }
 }
