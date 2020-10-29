@@ -34,4 +34,22 @@ public class TestUtils {
         }
     }
 
+    public static <T> void equalsIgnoreOrder(List<?> l1, List<?> l2) {
+        if (l1.size() != l2.size()) {
+            throw new AssertionFailedError(String.format("Size dose not match: %d, %d", l1.size(), l2.size()));
+        }
+        for (Object o1 : l1) {
+            boolean findMatch = false;
+            for (Object o2 : l2) {
+                if (Objects.equals(o1, o2)) {
+                    findMatch = true;
+                    break;
+                }
+            }
+            if (!findMatch) {
+                throw new AssertionFailedError(String.format("No match found in list 2 for %s in list 1", o1));
+            }
+        }
+    }
+
 }
