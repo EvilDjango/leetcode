@@ -34,7 +34,7 @@ public class TestUtils {
         }
     }
 
-    public static <T> void equalsIgnoreOrder(List<?> l1, List<?> l2) {
+    public static void equalsIgnoreOrder(List<?> l1, List<?> l2) {
         if (l1.size() != l2.size()) {
             throw new AssertionFailedError(String.format("Size dose not match: %d, %d", l1.size(), l2.size()));
         }
@@ -48,6 +48,17 @@ public class TestUtils {
             }
             if (!findMatch) {
                 throw new AssertionFailedError(String.format("No match found in list 2 for %s in list 1", o1));
+            }
+        }
+    }
+
+    public static void assertListEquals(List<?> expect, List<?> actual) {
+        if (expect.size() != actual.size()) {
+            throw new AssertionFailedError(String.format("Size dose not match: %d, %d", expect.size(), actual.size()));
+        }
+        for (int i = 0; i < expect.size(); i++) {
+            if (!Objects.equals(expect.get(i), actual.get(i))) {
+                throw new AssertionFailedError(String.format("Expected %s, actually %s at position %d", expect.get(i), actual.get(i), i));
             }
         }
     }

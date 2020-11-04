@@ -29,6 +29,8 @@ class TraverseTest {
         Traverse.preOrderByLoop2(root);
     }
 
+
+
     @Test
     void preorderByLoop3() {
         Traverse.preOrderByLoop3(root);
@@ -39,12 +41,6 @@ class TraverseTest {
         Traverse.preOrderByMorris(root);
         System.out.println();
     }
-
-    @Test
-    void preorderByLoop4() {
-        Traverse.preOrderByLoop4(root);
-    }
-
     @Test
     void traverseByLayer() {
         Traverse.traverseByLayer(root);

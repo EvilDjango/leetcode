@@ -94,29 +94,6 @@ public class Traverse {
     public static void preOrderByLoop3(TreeNode root) {
         // 已经访问过的节点
         Stack<TreeNode> stack = new Stack<>();
-        stack.add(root);
-        TreeNode cur;
-        while (!stack.isEmpty()) {
-            cur = stack.pop();
-            while (cur != null) {
-                cur.visit();
-                stack.add(cur);
-                cur = cur.left;
-            }
-            if (!stack.isEmpty()) {
-                stack.add(stack.pop().right);
-            }
-        }
-    }
-
-    /**
-     * 前序遍历：循环4
-     *
-     * @param root
-     */
-    public static void preOrderByLoop4(TreeNode root) {
-        // 已经访问过的节点
-        Stack<TreeNode> stack = new Stack<>();
         TreeNode cur = root;
         while (cur != null || !stack.isEmpty()) {
             if (cur != null) {
@@ -315,6 +292,11 @@ public class Traverse {
         }
     }
 
+    /**
+     * 莫里斯后序遍历
+     *
+     * @param root
+     */
     public static void postOrderMorris(TreeNode root) {
         TreeNode dumb = new TreeNode(0);
         dumb.left = root;
