@@ -37,4 +37,13 @@ public class ListNode {
         sb.append("]");
         return sb.toString();
     }
+
+    public ListNode add(ListNode list) {
+        ListNode cur = this;
+        while (cur.next != null) {
+            cur = cur.next;
+        }
+        cur.next = list;
+        return this;
+    }
 }
