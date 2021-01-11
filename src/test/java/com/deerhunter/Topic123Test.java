@@ -43,4 +43,19 @@ class Topic123Test {
     void solution2() {
         test(Topic123.Solution2::maxProfit);
     }
+
+    @Test
+    void solution3() {
+        test(Topic123.Solution3::maxProfit);
+    }
+
+    @Test
+    void solution4() {
+        test(Topic123.Solution4::maxProfit);
+    }
+
+    @Test
+    void solution5() {
+        test(Topic123.Solution5::maxProfit);
+    }
 }

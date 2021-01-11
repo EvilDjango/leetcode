@@ -1,5 +1,8 @@
 package com.deerhunter;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 给定一个数组，它的第 i 个元素是一支给定的股票在第 i 天的价格。
  * <p>
@@ -93,6 +96,79 @@ public class Topic123 {
                 dp[0] = Math.max(dp[0], -prices[i]);
             }
             return Math.max(dp[1], dp[3]);
+        }
+    }
+
+
+    /**
+     * 暴力算法，循环
+     */
+    public static class Solution3 {
+        public static int maxProfit(int[] prices) {
+            int max = 0;
+            int len = prices.length;
+            for (int i = 0; i < len; i++) {
+                for (int j = i + 1; j < len; j++) {
+                    // 完成一次交易的最大利润
+                    max = Math.max(max, prices[j] - prices[i]);
+                    for (int k = j + 1; k < len; k++) {
+                        for (int l = k + 1; l < len; l++) {
+                            // 完成两次交易的最大利润
+                            max = Math.max(max, prices[l] - prices[k] + prices[j] - prices[i]);
+                        }
+                    }
+                }
+            }
+            return max;
+        }
+    }
+
+    /**
+     * 记忆化递归，深度搜索
+     */
+    public static class Solution4 {
+        public static int maxProfit(int[] prices) {
+            return maxProfit(new HashMap<>(), prices, 0, 0);
+        }
+
+        private static int maxProfit(Map<String, Integer> map, int[] prices, int index, int count) {
+            // 最多只允许2次交易
+            if (count >= 2) {
+                return 0;
+            }
+            String key = index + "@" + count;
+            if (map.containsKey(key)) {
+                return map.get(key);
+            }
+            int maxProfit = 0;
+            for (int i = index; i < prices.length; i++) {
+                for (int j = i + 1; j < prices.length; j++) {
+                    maxProfit = Math.max(maxProfit, prices[j] - prices[i] + maxProfit(map, prices, j + 1, count + 1));
+                }
+            }
+            map.put(key, maxProfit);
+            return maxProfit;
+        }
+    }
+
+    /**
+     * 动态规划
+     */
+    public static class Solution5 {
+        public static int maxProfit(int[] prices) {
+            int len = prices.length;
+            int[] dp = new int[4];
+            dp[0] = -prices[0];
+            dp[1] = 0;
+            dp[2] = Integer.MIN_VALUE;
+            dp[3] = 0;
+            for (int i = 1; i < len; i++) {
+                dp[3] = Math.max(dp[3], prices[i] + dp[2]);
+                dp[2] = Math.max(dp[2], dp[1] - prices[i]);
+                dp[1] = Math.max(dp[1], prices[i] + dp[0]);
+                dp[0] = Math.max(dp[0], -prices[i]);
+            }
+            return Math.max(dp[3], dp[1]);
         }
     }
 
