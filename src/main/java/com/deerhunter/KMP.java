@@ -76,7 +76,6 @@ public class KMP {
 
     private static int[] getPmt(String s) {
         int[] pmt = new int[s.length()];
-        pmt[0] = 0;
         int i = 1;
         int j = 0;
         while (i < s.length()) {
