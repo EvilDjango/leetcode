@@ -80,6 +80,21 @@ public class TreeNode {
         return right != null;
     }
 
+
+    /**
+     * 构造一个含有n个节点的完全二叉树
+     *
+     * @param n
+     * @return
+     */
+    public static TreeNode createCompleteTree(int n) {
+        int[] nums = new int[n];
+        for (int i = 0; i < n; i++) {
+            nums[i] = i + 1;
+        }
+        return createCompleteTree(nums);
+    }
+
     /**
      * 构造一个完全二叉树
      *

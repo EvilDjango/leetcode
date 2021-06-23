@@ -17,12 +17,25 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class Topic222Test {
     void test(Function<TreeNode, Integer> function) {
-        TreeNode root = TreeNode.createCompleteTree(new int[]{1, 2, 3, 4, 5, 6});
-        assertEquals(6, function.apply(root));
+        assertEquals(7, function.apply(TreeNode.createCompleteTree(new int[]{1, 2, 3, 4, 5, 6,7})));
+        assertEquals(6, function.apply(TreeNode.createCompleteTree(new int[]{1, 2, 3, 4, 5, 6})));
+        assertEquals(5, function.apply(TreeNode.createCompleteTree(new int[]{1, 2, 3, 4, 5})));
+        assertEquals(500, function.apply(TreeNode.createCompleteTree(500)));
+        assertEquals(0, function.apply(TreeNode.createCompleteTree(0)));
     }
 
     @Test
     void solution1() {
         test(new Topic222.Solution1()::countNodes);
+    }
+
+    @Test
+    void solution2() {
+        test(new Topic222.Solution2()::countNodes);
+    }
+
+    @Test
+    void solution3() {
+        test(new Topic222.Solution3()::countNodes);
     }
 }
