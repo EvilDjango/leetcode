@@ -3,10 +3,8 @@ package com.deerhunter;
 import com.deerhunter.tree.TreeNode;
 import com.sun.tools.javac.util.Pair;
 
-import javax.swing.*;
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Queue;
 
 /**
  * 222. Count Complete Tree Nodes
