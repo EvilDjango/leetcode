@@ -54,7 +54,7 @@ public class TestUtils {
 
     public static void assertListEquals(List<?> expect, List<?> actual) {
         if (expect.size() != actual.size()) {
-            throw new AssertionFailedError(String.format("Size dose not match: %d, %d", expect.size(), actual.size()));
+            throw new AssertionFailedError(String.format("Wrong size: expect %d, actual %d", expect.size(), actual.size()));
         }
         for (int i = 0; i < expect.size(); i++) {
             if (!Objects.equals(expect.get(i), actual.get(i))) {

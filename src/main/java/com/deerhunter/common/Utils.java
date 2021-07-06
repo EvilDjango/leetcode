@@ -101,7 +101,7 @@ public class Utils {
             return -1;
         }
         int left = start;
-        int right = end > nums.length ? nums.length : end;
+        int right = Math.min(end, nums.length);
         while (left < right) {
             // 防止溢出
             int mid = left + (right - left) / 2;
@@ -133,7 +133,7 @@ public class Utils {
             return -1;
         }
         int left = 0;
-        int right = end > nums.length ? nums.length : end;
+        int right = Math.min(end, nums.length);
         while (left < right) {
             // 防止溢出
             int mid = left + (right - left) / 2;
