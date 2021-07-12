@@ -46,15 +46,12 @@ public class Topic275 {
                 int count = len - mid;
                 if (count > citations[mid]) {
                     left = mid + 1;
-                } else if (count < citations[mid]) {
+                } else  {
                     right = mid;
-                } else {
-                    return count;
                 }
             }
 
-            return left > 0 ? Math.max(citations[left - 1], len - left) : len - left;
+            return len - left;
         }
     }
-
 }
