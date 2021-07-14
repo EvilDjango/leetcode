@@ -34,13 +34,14 @@ public class TestUtils {
         }
     }
 
-    public static void equalsIgnoreOrder(List<?> l1, List<?> l2) {
-        if (l1.size() != l2.size()) {
-            throw new AssertionFailedError(String.format("Size dose not match: %d, %d", l1.size(), l2.size()));
+    public static void equalsIgnoreOrder(List<?> expect, List<?> actual) {
+        if (expect.size() != actual.size()) {
+            throw new AssertionFailedError(String.format("Size dose not match, expect: %d, actual: %d\n expect: %s\n actual: %s",
+                    expect.size(), actual.size(), expect, actual));
         }
-        for (Object o1 : l1) {
+        for (Object o1 : expect) {
             boolean findMatch = false;
-            for (Object o2 : l2) {
+            for (Object o2 : actual) {
                 if (Objects.equals(o1, o2)) {
                     findMatch = true;
                     break;
