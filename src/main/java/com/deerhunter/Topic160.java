@@ -129,4 +129,19 @@ public class Topic160 {
             return curA == curB ? curA : null;
         }
     }
+
+    /**
+     * 双指针法，参考官方题解
+     */
+    public static class Solution3 {
+        public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+            ListNode curA = headA;
+            ListNode curB = headB;
+            while (curA != curB) {
+                curA = curA == null ? headB : curA.next;
+                curB = curB == null ? headA : curB.next;
+            }
+            return curA;
+        }
+    }
 }
