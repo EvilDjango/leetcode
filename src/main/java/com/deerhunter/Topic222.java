@@ -1,7 +1,7 @@
 package com.deerhunter;
 
 import com.deerhunter.tree.TreeNode;
-import com.sun.tools.javac.util.Pair;
+import javafx.util.Pair;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -87,8 +87,8 @@ public class Topic222 {
                     }
                 } else {
                     Pair<TreeNode, Integer> pair = stack.pop();
-                    node = pair.fst;
-                    curDepth = pair.snd;
+                    node = pair.getKey();
+                    curDepth = pair.getValue();
                 }
             }
             // 满二叉树会走到这里
