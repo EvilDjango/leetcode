@@ -43,7 +43,6 @@ class SortsTest {
         assertArrayEquals(copiedNums, nums);
     }
 
-
     @ParameterizedTest
     @MethodSource("numsProvider")
     void shellSort(int[] nums) {
