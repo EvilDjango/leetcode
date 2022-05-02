@@ -1,6 +1,6 @@
 package com.deerhunter;
 
-import org.junit.jupiter.api.Test;
+import com.deerhunter.common.Sorts;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 

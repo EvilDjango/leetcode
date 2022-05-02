@@ -1,4 +1,4 @@
-package com.deerhunter;
+package com.deerhunter.common;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
