@@ -1,6 +1,5 @@
 package com.deerhunter;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -8,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiFunction;
 
-import static com.deerhunter.TestUtils.equalsIgnoreOrder;
+import static com.deerhunter.TestUtils.assertEqualsIgnoreOrder;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -25,7 +24,7 @@ class Topic140Test {
         List<String> words = Arrays.asList("cat", "cats", "and", "sand", "dog");
         List<String> result = function.apply(s, words);
         List<String> expected = Arrays.asList("cats and dog", "cat sand dog");
-        equalsIgnoreOrder(expected, result);
+        TestUtils.assertEqualsIgnoreOrder(expected, result);
 
 
         s = "pineapplepenapple";
@@ -34,13 +33,13 @@ class Topic140Test {
         expected = Arrays.asList("pine apple pen apple",
                 "pineapple pen apple",
                 "pine applepen apple");
-        equalsIgnoreOrder(expected, result);
+        TestUtils.assertEqualsIgnoreOrder(expected, result);
 
         s = "catsandog";
         words = Arrays.asList("cats", "dog", "sand", "and", "cat");
         result = function.apply(s, words);
         expected = new ArrayList<>();
-        equalsIgnoreOrder(expected, result);
+        TestUtils.assertEqualsIgnoreOrder(expected, result);
     }
 
     @Test

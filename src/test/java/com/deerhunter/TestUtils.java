@@ -2,7 +2,9 @@ package com.deerhunter;
 
 import junit.framework.AssertionFailedError;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,7 +36,7 @@ public class TestUtils {
         }
     }
 
-    public static void equalsIgnoreOrder(List<?> expect, List<?> actual) {
+    public static void assertEqualsIgnoreOrder(List<?> expect, List<?> actual) {
         if (expect.size() != actual.size()) {
             throw new AssertionFailedError(String.format("Size dose not match, expect: %d, actual: %d\n expect: %s\n actual: %s",
                     expect.size(), actual.size(), expect, actual));
@@ -49,6 +51,22 @@ public class TestUtils {
             }
             if (!findMatch) {
                 throw new AssertionFailedError(String.format("No match found in list 2 for %s in list 1", o1));
+            }
+        }
+    }
+
+    public static void assertEqualsIgnoreOrder(int[] expected, int[] actual) {
+        if (expected.length != actual.length) {
+            throw new AssertionFailedError("different length");
+        }
+        Map<Integer, Integer> count = new HashMap<>();
+        for (int i : actual) {
+            count.merge(i, 1, Integer::sum);
+        }
+        for (int i : expected) {
+            count.merge(i, -1, Integer::sum);
+            if (count.get(i) < 0) {
+                throw new AssertionFailedError(String.format("expected %d", i));
             }
         }
     }
