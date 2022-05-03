@@ -3,6 +3,7 @@ package com.deerhunter;
 import com.deerhunter.common.Utils;
 
 import java.util.Date;
+import java.util.TreeMap;
 
 /**
  * 实现获取下一个排列的函数，算法需要将给定数字序列重新排列成字典序中下一个更大的排列。
@@ -55,7 +56,80 @@ public class Topic031 {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(new Date(1566751107012L));
+    /**
+     * 重刷题目  20220502
+     * 这是自己想的解法
+     *
+     * @param nums
+     */
+    public static void nextPermutation2(int[] nums) {
+        int n = nums.length;
+        TreeMap<Integer, Integer> treeMap = new TreeMap<>();
+        int swapIndex = -1;
+        for (int i = n - 1; i >= 0; i--) {
+            Integer greater = treeMap.ceilingKey(nums[i] + 1);
+            if (greater != null) {
+                swap(nums, i, treeMap.get(greater));
+                swapIndex = i;
+                break;
+            }
+            treeMap.put(nums[i], i);
+        }
+        quickSort(nums, swapIndex + 1, nums.length - 1);
+    }
+
+    private static void quickSort(int[] nums, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+        int pivot = nums[left];
+        int l = left, r = right;
+        while (l < r) {
+            while (l < r && nums[r] >= pivot) {
+                r--;
+            }
+            swap(nums, l, r);
+            while (l < r && nums[l] <= pivot) {
+                l++;
+            }
+            swap(nums, l, r);
+        }
+        nums[l] = pivot;
+        quickSort(nums, left, l - 1);
+        quickSort(nums, l + 1, right);
+    }
+
+    private static void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    /**
+     * 重刷题目  20220502
+     * 参考官方题解
+     *
+     * @param nums
+     */
+    public static void nextPermutation3(int[] nums) {
+        int n = nums.length;
+        int i = n - 2;
+        while (i >= 0 && nums[i] >= nums[i + 1]) {
+            i--;
+        }
+        if (i >= 0) {
+            int j = n - 1;
+            while (j >= 0 && nums[j] <= nums[i]) {
+                j--;
+            }
+            swap(nums, i, j);
+        }
+        reverse(nums, i + 1, n - 1);
+    }
+
+    private static void reverse(int[] nums, int left, int right) {
+        while (left < right) {
+            swap(nums, left++, right--);
+        }
     }
 }
