@@ -94,7 +94,7 @@ public class Topic307 {
     }
 
     /**
-     * 依然是线段树
+     * 依然是线段树,参考题解，自上而下
      */
     static class NumArray2 {
         private int n;
@@ -241,6 +241,53 @@ public class Topic307 {
             }
             while (left <= right) {
                 sum += nums[left++];
+            }
+            return sum;
+        }
+    }
+
+    /**
+     * 仅使用2n空间的线段树，自底向上，注意树是从下标1开始的，就是说总结点数为2n-1，那么i节点的左右子树分别为2i和2i+1，父节点为i/2
+     */
+    class NumArray5 {
+        private int n;
+        private int[] tree;
+
+        public NumArray5(int[] nums) {
+            n = nums.length;
+            tree = new int[n << 1];
+            for (int i = 0; i < n; i++) {
+                tree[n + i] = nums[i];
+            }
+            for (int i = n - 1; i > 0; i--) {
+                tree[i] = tree[i << 1] + tree[(i << 1) + 1];
+            }
+        }
+
+        public void update(int index, int val) {
+            index += n;
+            int delta = val - tree[index];
+            while (index > 0) {
+                tree[index] += delta;
+                index >>= 1;
+            }
+        }
+
+        public int sumRange(int left, int right) {
+            int sum = 0;
+            left += n;
+            right += n;
+            while (left <= right) {
+                // 左端点为右节点，那么左节点是不能计入的，所以累加上本节点的值后，left右移一位
+                if ((left & 1) == 1) {
+                    sum += tree[left++];
+                }
+                // 右端点为左节点，那么右节点是不嫩计入的，所以累加上本节点的值后，right左移一位
+                if ((right & 1) == 0) {
+                    sum += tree[right--];
+                }
+                left >>= 1;
+                right >>= 1;
             }
             return sum;
         }
