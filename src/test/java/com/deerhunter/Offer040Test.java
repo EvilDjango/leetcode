@@ -1,10 +1,9 @@
 package com.deerhunter;
 
+import com.deerhunter.offer.Offer040;
 import org.junit.jupiter.api.Test;
 
 import java.util.function.BiFunction;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Oops, forgot to write comments. Good luck, bro.

@@ -1,9 +1,8 @@
 package com.deerhunter;
 
 import com.deerhunter.common.Utils;
+import com.deerhunter.topic.Topic059;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Oops, forgot to write comment. Good luck, bro.

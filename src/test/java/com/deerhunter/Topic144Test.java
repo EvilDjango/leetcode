@@ -1,13 +1,12 @@
 package com.deerhunter;
 
+import com.deerhunter.topic.Topic144;
 import com.deerhunter.tree.TreeNode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Oops, forgot to write comments. Good luck, bro.

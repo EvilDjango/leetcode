@@ -1,8 +1,10 @@
 package com.deerhunter;
 
+import com.deerhunter.topic.Graph;
+import com.deerhunter.topic.Node;
+import com.deerhunter.topic.Topic133;
 import org.junit.jupiter.api.Test;
 
-import java.util.function.Consumer;
 import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.*;

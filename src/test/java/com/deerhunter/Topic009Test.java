@@ -1,5 +1,6 @@
 package com.deerhunter;
 
+import com.deerhunter.topic.Topic009;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;

@@ -1,12 +1,11 @@
 package com.deerhunter;
 
+import com.deerhunter.topic.Topic095;
 import com.deerhunter.tree.Traverse;
 import com.deerhunter.tree.TreeNode;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Oops, forgot to write comments. Good luck, bro.

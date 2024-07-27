@@ -1,7 +1,7 @@
 package com.deerhunter;
 
 import com.deerhunter.common.ListNode;
-import com.deerhunter.common.Utils;
+import com.deerhunter.topic.Topic160;
 import org.junit.jupiter.api.Test;
 
 import java.util.function.BiFunction;

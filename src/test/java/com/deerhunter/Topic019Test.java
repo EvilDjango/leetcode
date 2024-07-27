@@ -1,6 +1,7 @@
 package com.deerhunter;
 
 import com.deerhunter.common.ListNode;
+import com.deerhunter.topic.Topic019;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,5 +1,6 @@
 package com.deerhunter;
 
+import com.deerhunter.topic.Topic241;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -7,7 +8,6 @@ import java.util.List;
 import java.util.function.Function;
 
 import static com.deerhunter.TestUtils.assertListEquals;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Oops, forgot to write comments. Good luck, bro.

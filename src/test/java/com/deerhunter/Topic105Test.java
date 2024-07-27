@@ -1,10 +1,10 @@
 package com.deerhunter;
 
+import com.deerhunter.topic.Topic105;
 import com.deerhunter.tree.TreeNode;
 import org.junit.jupiter.api.Test;
 
 import java.util.function.BiFunction;
-import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.*;
 

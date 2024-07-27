@@ -1,10 +1,9 @@
 package com.deerhunter;
 
+import com.deerhunter.topic.Topic189;
 import org.junit.jupiter.api.Test;
 
 import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
-import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,5 +1,6 @@
 package com.deerhunter;
 
+import com.deerhunter.topic.LCS002;
 import org.junit.jupiter.api.Test;
 
 import java.util.function.Function;

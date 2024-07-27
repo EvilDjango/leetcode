@@ -1,9 +1,9 @@
 package com.deerhunter;
 
+import com.deerhunter.topic.Topic057;
 import org.junit.jupiter.api.Test;
 
 import static com.deerhunter.common.Utils.checkArrayEqual;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Oops, forgot to write comment. Good luck, bro.

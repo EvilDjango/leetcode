@@ -1,5 +1,6 @@
 package com.deerhunter;
 
+import com.deerhunter.offer.Offer041;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

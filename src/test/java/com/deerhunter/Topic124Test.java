@@ -1,8 +1,8 @@
 package com.deerhunter;
 
+import com.deerhunter.topic.Topic124;
 import com.deerhunter.tree.TreeNode;
 import org.junit.jupiter.api.Test;
-import org.omg.PortableInterceptor.INACTIVE;
 
 import java.util.function.Function;
 
